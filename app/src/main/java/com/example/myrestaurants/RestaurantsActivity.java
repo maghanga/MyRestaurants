@@ -18,7 +18,7 @@ public class RestaurantsActivity extends AppCompatActivity {
     @BindView(R.id.listView) ListView mListView;
 
     private String[] restaurants = new String[] {"The Collective", "Brew Bistro", "Burrito Bar", "Petma", "Ranalo's foods", "Kaldis", "Kilimanjaro", "Mama Rocks", "Nyama Mama", "Subway","KFC", "Chicken Inn", "Pepino's", "Teriyaki", "Charlie's Bisto"};
-    private String[] cuisines = new String[] {"Vegan Food", "Breakfast", "Burritos",
+    private String[] cuisines = new String[] {"Vegan Food", "Beer", "Burritos",
             "Kenyan food", "Fish and Ugali", "Coffee", "Pilau", "Burgers and fries", "Nyamchom",
             "Subs", "Fried chicken", "Fried chicken", "Fast food", "Teriyaki chicken", "Breakfast"};
 
