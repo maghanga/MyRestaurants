@@ -11,21 +11,22 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class RestaurantsActivity extends AppCompatActivity {
 
     private String[] restaurants = new String[] {"The Collective", "Brew Bistro", "Burrito Bar", "Petma", "Ranalo's foods", "Kaldis", "Kilimanjaro", "Mama Rocks", "Nyama Mama", "Subway","KFC", "Chicken Inn", "Pepino's", "Teriyaki", "Charlie's Bisto"};
-
-    public static final String TAG = RestaurantsActivity.class.getSimpleName();
-    private TextView mLocationTextView;
-    private ListView mListView;
+    @BindView(R.id.locationTextView) TextView mLocationTextView;
+    @BindView(R.id.listView) ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
 
-        mListView = (ListView) findViewById(R.id.listView);
-        mLocationTextView = (TextView) findViewById(R.id.locationTextView);
+        ButterKnife.bind(this);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, restaurants);
         mListView.setAdapter(adapter);
