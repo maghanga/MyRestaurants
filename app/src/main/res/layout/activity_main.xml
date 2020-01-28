@@ -22,22 +22,23 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/open_sans_condensed_bold"
         android:text="MyRestaurants"
         android:textColor="@color/colorTextIcons"
-        android:textSize="40sp"
+        android:textSize="50sp"
         android:textStyle="bold" />
 
     <EditText
+        android:id="@+id/locationEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/locationEditText"
-        android:background="@color/colorTextIcons"
         android:layout_above="@+id/findRestaurantsButton"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:padding="5dp"
+        android:background="@color/colorTextIcons"
+        android:fontFamily="@font/open_sans_condensed_bold"
         android:hint="Enter Zip Code"
-        android:layout_centerHorizontal="true" />
+        android:padding="5dp" />
 
     <Button
         android:id="@+id/findRestaurantsButton"
@@ -46,6 +47,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@color/colorAccent"
+        android:fontFamily="@font/open_sans_condensed_bold"
         android:text="Find Restaurants"
         android:textColor="@color/colorTextIcons" />
 
