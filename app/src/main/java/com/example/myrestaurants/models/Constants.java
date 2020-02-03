@@ -1,4 +1,6 @@
-package com.example.myrestaurants;
+package com.example.myrestaurants.models;
+
+import com.example.myrestaurants.BuildConfig;
 
 public class Constants {
     public static final String YELP_BASE_URL = "https://api.yelp.com/v3/";

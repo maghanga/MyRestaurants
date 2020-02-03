@@ -1,14 +1,23 @@
-package com.example.myrestaurants;
+package com.example.myrestaurants.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myrestaurants.R;
+import com.example.myrestaurants.models.Business;
+import com.example.myrestaurants.models.Category;
+import com.example.myrestaurants.models.YelpBusinessesSearchResponse;
+import com.example.myrestaurants.network.YelpApi;
+import com.example.myrestaurants.network.YelpClient;
 
 import java.util.List;
 
@@ -25,26 +34,6 @@ public class RestaurantsActivity extends AppCompatActivity {
     @BindView(R.id.progressBar)
     ProgressBar mProgressBar;
 
-    private void showFailureMessage() {
-        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
-        mErrorTextView.setVisibility(View.VISIBLE);
-    }
-
-    private void showUnsuccessfulMessage() {
-        mErrorTextView.setText("Something went wrong. Please try again later");
-        mErrorTextView.setVisibility(View.VISIBLE);
-    }
-
-    private void showRestaurants() {
-        mListView.setVisibility(View.VISIBLE);
-        mLocationTextView.setVisibility(View.VISIBLE);
-    }
-
-    private void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
-    }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +41,26 @@ public class RestaurantsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String restaurant = ((TextView)view).getText().toString();
+                Toast.makeText(RestaurantsActivity.this, restaurant, Toast.LENGTH_LONG).show();
+            }
+        });
+
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
+
+        mLocationTextView.setText("Here are all the restaurants near: " + location);
+
+
         YelpApi client = YelpClient.getClient();
 
         Call<YelpBusinessesSearchResponse> call = client.getRestaurants(location, "restaurants");
 
         call.enqueue(new Callback<YelpBusinessesSearchResponse>() {
+
             @Override
             public void onResponse(Call<YelpBusinessesSearchResponse> call, Response<YelpBusinessesSearchResponse> response) {
 
@@ -99,19 +101,26 @@ public class RestaurantsActivity extends AppCompatActivity {
         });
 
 
-
-//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l){
-//                String restaurant = ((TextView)view).getText().toString();
-//                Toast.makeText(RestaurantsActivity.this, restaurant, Toast.LENGTH_LONG).show();
-//            }
-//        });
-//        mLocationTextView.setText("Here are all the restaurants near: " + location);
-
-
     }
 
+    private void showFailureMessage() {
+        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showUnsuccessfulMessage() {
+        mErrorTextView.setText("Something went wrong. Please try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showRestaurants() {
+        mListView.setVisibility(View.VISIBLE);
+        mLocationTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
+    }
 
 
 
