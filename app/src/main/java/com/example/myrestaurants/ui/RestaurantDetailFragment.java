@@ -16,9 +16,9 @@ import com.example.myrestaurants.R;
 public class RestaurantDetailFragment extends Fragment {
 
 
-    public RestaurantDetailFragment() {
-        // Required empty public constructor
-    }
+//    public RestaurantDetailFragment() {
+//        // Required empty public constructor
+//    }
 
 
     @Override
