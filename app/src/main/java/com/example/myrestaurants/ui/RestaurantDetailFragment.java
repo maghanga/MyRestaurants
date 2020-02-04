@@ -74,27 +74,31 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
         mPhoneLabel.setText(mRestaurant.getPhone());
         mAddressLabel.setText(mRestaurant.getLocation().toString());
 
+        mWebsiteLabel.setOnClickListener(this);
+        mPhoneLabel.setOnClickListener(this);
+        mAddressLabel.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View v) {
         if (v == mWebsiteLabel) {
-            Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(mRestaurant.getUrl()));
+            Uri web = Uri.parse(mRestaurant.getUrl());
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, web);
             startActivity(webIntent);
         }
         if (v == mPhoneLabel) {
-            Intent phoneIntent = new Intent(Intent.ACTION_DIAL,
-                    Uri.parse("tel:" + mRestaurant.getPhone()));
+            Uri number = Uri.parse("tel:" + mRestaurant.getPhone());
+            Intent phoneIntent = new Intent(Intent.ACTION_DIAL, number);
             startActivity(phoneIntent);
         }
         if (v == mAddressLabel) {
-            Intent mapIntent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("geo:" + mRestaurant.getCoordinates().getLatitude()
-                            + "," + mRestaurant.getCoordinates().getLongitude()
-                            + "?q=(" + mRestaurant.getName() + ")"));
+            Uri address = Uri.parse("geo:" + mRestaurant.getCoordinates().getLatitude()
+                    + "," + mRestaurant.getCoordinates().getLongitude()
+                    + "?q=(" + mRestaurant.getName() + ")");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, address);
             startActivity(mapIntent);
         }
     }
 }
+
