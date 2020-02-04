@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myrestaurants.R;
 import com.example.myrestaurants.models.Business;
+import com.example.myrestaurants.ui.RestaurantDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;

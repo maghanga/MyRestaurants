@@ -1,8 +1,6 @@
 
 package com.example.myrestaurants.models;
 
-import android.location.Location;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -43,6 +41,9 @@ public class Business {
     @SerializedName("url")
     @Expose
     private String url;
+    @SerializedName("coordinates")
+    @Expose
+    private Coordinates coordinates;
     @SerializedName("image_url")
     @Expose
     private String imageUrl;
@@ -58,29 +59,30 @@ public class Business {
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public Business() {
     }
 
     /**
-     * 
-     * @param distance
-     * @param rating
+     *
      * @param transactions
-     * @param url
-     * @param isClosed
      * @param phone
-     * @param reviewCount
-     * @param price
-     * @param imageUrl
-     * @param name
-     * @param alias
      * @param location
+     * @param alias
+     * @param imageUrl
+     * @param url
      * @param id
+     * @param distance
+     * @param price
+     * @param reviewCount
+     * @param name
      * @param categories
+     * @param rating
+     * @param isClosed
+     * @param coordinates
      */
-    public Business(Double rating, String price, String phone, String id, String alias, Boolean isClosed, List<Category> categories, Integer reviewCount, String name, String url, String imageUrl, Location location, Double distance, List<String> transactions) {
+    public Business(Double rating, String price, String phone, String id, String alias, Boolean isClosed, List<Category> categories, Integer reviewCount, String name, String url, Coordinates coordinates, String imageUrl, Location location, Double distance, List<String> transactions) {
         super();
         this.rating = rating;
         this.price = price;
@@ -92,6 +94,7 @@ public class Business {
         this.reviewCount = reviewCount;
         this.name = name;
         this.url = url;
+        this.coordinates = coordinates;
         this.imageUrl = imageUrl;
         this.location = location;
         this.distance = distance;
@@ -102,7 +105,7 @@ public class Business {
         return rating;
     }
 
-    public void setRating(  Double rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 
@@ -176,6 +179,14 @@ public class Business {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 
     public String getImageUrl() {
