@@ -50,8 +50,6 @@ public class RestaurantListActivity extends AppCompatActivity {
 
         Call<YelpBusinessesSearchResponse> call = client.getRestaurants(location, "restaurants");
 
-        Log.v("My URL", String.valueOf(call.request().url()));
-
 
 
         call.enqueue(new Callback<YelpBusinessesSearchResponse>() {

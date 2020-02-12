@@ -17,16 +17,16 @@
         android:src="@drawable/background" />
 
     <TextView
+        android:id="@+id/appNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:fontFamily="@font/open_sans_condensed_bold"
+        android:fontFamily="@font/ostrich"
         android:text="MyRestaurants"
         android:textColor="@color/colorTextIcons"
         android:textSize="50sp"
-        android:id="@+id/appNameTextView"
         android:textStyle="bold" />
 
     <EditText
