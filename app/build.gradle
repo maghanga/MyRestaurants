@@ -68,6 +68,3 @@ android {
     }
 }
 
-dependencies {
-    implementation 'com.google.firebase:firebase-auth:16.0.5'
-}
