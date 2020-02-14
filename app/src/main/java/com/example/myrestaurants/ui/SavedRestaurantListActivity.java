@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myrestaurants.R;
 import com.example.myrestaurants.adapters.FirebaseRestaurantViewHolder;
+import com.example.myrestaurants.models.Business;
 import com.example.myrestaurants.models.Constants;
-import com.example.myrestaurants.models.Restaurant;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 
 public class SavedRestaurantListActivity extends AppCompatActivity {
     private DatabaseReference mRestaurantReference;
-    private FirebaseRecyclerAdapter<Restaurant, FirebaseRestaurantViewHolder> mFirebaseAdapter;
+    private FirebaseRecyclerAdapter<Business, FirebaseRestaurantViewHolder> mFirebaseAdapter;
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
@@ -36,35 +36,20 @@ public class SavedRestaurantListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
 
-//        ValueEventListener postListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                Business restraunt = dataSnapshot.getValue(Business.class);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                Log.w("onCancelled", "loadPost:onCancelled", databaseError.toException());
-//
-//            }
-//        };
-//
-//        mRestaurantReference.addValueEventListener(postListener);
-
 
         mRestaurantReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RESTAURANTS);
         setUpFirebaseAdapter();
     }
 
     private void setUpFirebaseAdapter(){
-        FirebaseRecyclerOptions<Restaurant> options =
-                new FirebaseRecyclerOptions.Builder<Restaurant>()
-                        .setQuery(mRestaurantReference, Restaurant.class)
+        FirebaseRecyclerOptions<Business> options =
+                new FirebaseRecyclerOptions.Builder<Business>()
+                        .setQuery(mRestaurantReference, Business.class)
                         .build();
 
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Restaurant, FirebaseRestaurantViewHolder>(options) {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<Business, FirebaseRestaurantViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull FirebaseRestaurantViewHolder firebaseRestaurantViewHolder, int position, @NonNull Restaurant restaurant) {
+            protected void onBindViewHolder(@NonNull FirebaseRestaurantViewHolder firebaseRestaurantViewHolder, int position, @NonNull Business restaurant) {
                 firebaseRestaurantViewHolder.bindRestaurant(restaurant);
             }
 
@@ -94,3 +79,4 @@ public class SavedRestaurantListActivity extends AppCompatActivity {
         }
     }
 }
+
